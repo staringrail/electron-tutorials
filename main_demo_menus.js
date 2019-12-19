@@ -14,6 +14,10 @@ function createWindow() {
         protocol: 'file:',
         slashes: true
     }))
+
+    // MacOS wants me to call setApplicationMenu inside the createWindow function
+    const menu = Menu.buildFromTemplate(template)
+    Menu.setApplicationMenu(menu)
 }
 
 const template = [
@@ -89,7 +93,8 @@ const template = [
         ]
     }
 ]
+if (process.platform == 'darwin') {
+    template.unshift({ label: 'name' });
+}
 
-const menu = Menu.buildFromTemplate(template)
-Menu.setApplicationMenu(menu)
 app.on('ready', createWindow)
