@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset = "UTF-8">
+      <title>Webviews</title>
+   </head>
+   
+   <body>
+      <div>
+         <div>
+            <h2>We have the website embedded below!</h2>
+         </div>
+         <div class = "indicator"></div>
+         <webview id = "myWebview" src = "https://www.tutorialspoint.com/" style = 
+            "width:400px; height:480px;">
+         </webview>
+      </div>
+      
+      <script type = "text/javascript">
+         // Event handlers for loading events.
+         // Use these to handle loading screens, transitions, etc
+        onload = () => {
+            const webview = document.getElementById('myWebview');
+            const indicator = document.querySelector('.indicator');
+            
+            const loadstart = () => {
+                indicator.innerText = 'Loading...';
+            }
+
+            const loadstop = () => {
+                indicator.innerText = '';
+            }
+
+            webview.addEventListener('did-start-loading', loadstart);
+            webview.addEventListener('did-stop-loading', loadstop);
+        }
+      </script>
+   </body>
+</html>
